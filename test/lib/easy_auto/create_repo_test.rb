@@ -1,5 +1,5 @@
 require_relative '../../test_helper'
-require './lib/easy-auto/create-repo'
+require './lib/easy_auto/create_repo'
 
 describe EasyAuto::CreateRepo do
 
