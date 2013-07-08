@@ -1,5 +1,8 @@
+require 'easy_auto/system_helper'
+
 module EasyAuto
   class CreateRepo
+    include SystemHelper
     attr_accessor :repo_name
     attr_reader :password
 
@@ -13,11 +16,11 @@ module EasyAuto
     end
 
     def get_github_email
-      `git config --get user.email`.strip
+      system "git config --get user.email"
     end
 
     def email
-      @email ||= get_github_email
+      get_github_email
     end
 
     def set_password
@@ -26,19 +29,20 @@ module EasyAuto
     end
 
     def remote_exists?
-      !`git branch -r`.empty?
+      output = system "git branch -r"
+      !output.empty?
     end
 
     def create_remote
-      `git init`
+      system "git init"
       create_repo
       set_remote
     end
 
     def set_remote
-      `git commit -m "first commit"`
-      `git remote add origin git@github.com:#{username}/#{repo_name}.git`
-      `git push -u origin master`
+      system "git commit -m 'first commit'"
+      system "git remote add origin git@github.com:#{username}/#{repo_name}.git"
+      system "git push -u origin master"
     end
 
     def create_repo

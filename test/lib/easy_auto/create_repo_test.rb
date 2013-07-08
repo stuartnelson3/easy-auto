@@ -13,4 +13,8 @@ describe EasyAuto::CreateRepo do
   it 'returns the right username' do
     subject.username == 'test'
   end
+
+  it 'correctly requires the system helper' do
+    subject.respond_to?(:system).must_equal true
+  end
 end
