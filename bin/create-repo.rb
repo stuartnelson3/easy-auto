@@ -2,4 +2,4 @@
 
 require 'easy-auto'
 
-EasyAuto::CreateRepo.new
+EasyAuto::CreateRepo.new.run

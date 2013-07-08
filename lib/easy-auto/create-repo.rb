@@ -1,21 +1,28 @@
 module EasyAuto
   class CreateRepo
     attr_accessor :repo_name
+    attr_reader :password
 
-    def initialize
-      @email = get_email
-      puts "enter your password for #@email"
-      @password = gets.strip
-      login_user
+    def run
+      set_password
       create_remote unless remote_exists?
     end
 
     def username
-      @email.split("@").first
+      email.split("@").first
     end
 
-    def get_username
+    def get_github_email
       `git config --get user.email`.strip
+    end
+
+    def email
+      @email ||= get_github_email
+    end
+
+    def set_password
+      puts "enter your password for #{email}"
+      @password = gets.strip
     end
 
     def remote_exists?
@@ -24,7 +31,7 @@ module EasyAuto
 
     def create_remote
       `git init`
-      create_repo get_repo_name
+      create_repo
       set_remote
     end
 
@@ -34,10 +41,10 @@ module EasyAuto
       `git push -u origin master`
     end
 
-    def create_repo repo_name
-      puts "creating repo with username: #@email"
-      puts "and password: #@password"
-      @client.create_repo get_repo_name
+    def create_repo
+      puts "creating repo with username: #{email}"
+      puts "and password: #{password}"
+      client.create_repo get_repo_name
     end
 
     def get_repo_name
@@ -45,8 +52,8 @@ module EasyAuto
       self.repo_name = gets.strip
     end
 
-    def login_user
-      @client = Octokit::Client.new login: @username, password: @password
+    def client
+      Octokit::Client.new login: username, password: password
     end
   end
 end
