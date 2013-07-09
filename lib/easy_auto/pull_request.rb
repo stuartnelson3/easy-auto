@@ -1,8 +1,10 @@
 require 'easy_auto/easy_utilities'
+require 'easy_auto/git'
 
 module EasyAuto
   class PullRequest
     include EasyUtilities
+    include Git
     attr_accessor :title, :body
 
     def run
@@ -24,7 +26,7 @@ module EasyAuto
     end
 
     def head
-      system "git rev-parse --abbrev-ref HEAD"
+      current_branch_name
     end
 
     def repo_name
