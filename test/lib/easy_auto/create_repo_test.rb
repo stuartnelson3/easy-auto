@@ -15,6 +15,6 @@ describe EasyAuto::CreateRepo do
   end
 
   it 'correctly requires the system helper' do
-    subject.respond_to?(:system).must_equal true
+    subject.must_respond_to :system
   end
 end

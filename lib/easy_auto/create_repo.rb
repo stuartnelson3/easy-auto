@@ -1,8 +1,10 @@
 require 'easy_auto/system_helper'
+require 'easy_auto/easy_utilities'
 
 module EasyAuto
   class CreateRepo
     include SystemHelper
+    include EasyUtilities
     attr_accessor :repo_name
     attr_reader :password
 
@@ -25,7 +27,7 @@ module EasyAuto
 
     def set_password
       puts "enter your password for #{email}"
-      @password = gets.strip
+      @password = hidden_input
     end
 
     def remote_exists?
@@ -46,8 +48,7 @@ module EasyAuto
     end
 
     def create_repo
-      puts "creating repo with username: #{email}"
-      puts "and password: #{password}"
+      puts "creating repo for username: #{email}"
       client.create_repo get_repo_name
     end
 
