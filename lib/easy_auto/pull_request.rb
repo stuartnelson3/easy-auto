@@ -31,7 +31,7 @@ module EasyAuto
     end
 
     def repo_name
-      remote.scan(/\/(.+\.git)/).first
+      remote.match(/\/(.+\.git)/)[1]
     end
 
     def remote

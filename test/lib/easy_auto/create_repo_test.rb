@@ -1,13 +1,18 @@
 require_relative '../../test_helper'
 require './lib/easy_auto/create_repo'
 
+class CreateRepoMock < EasyAuto::CreateRepo
+  def get_github_email
+    'test@example.com'
+  end
+end
+
 describe EasyAuto::CreateRepo do
 
-  subject { EasyAuto::CreateRepo.new }
-  let(:get_github_email) { 'test@example.com' }
+  subject { CreateRepoMock.new }
 
   it 'sets the email' do
-    subject.email == 'test@example.com'
+    subject.email.must_equal 'test@example.com'
   end
 
   it 'returns the right username' do
