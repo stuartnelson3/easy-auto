@@ -5,6 +5,7 @@ require 'easy_auto/easy_utilities'
 module EasyAuto
   class CreateBranch
     include GitWrapper
+    include EasyUtilities
 
     def run
       git.checkout_master
