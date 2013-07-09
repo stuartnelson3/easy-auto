@@ -7,3 +7,4 @@ module EasyAuto; end
 require "easy_auto/create_repo"
 require "easy_auto/pull_request"
 require "easy_auto/set_upstream"
+require "easy_auto/create_branch"
