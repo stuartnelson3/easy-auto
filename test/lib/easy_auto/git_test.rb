@@ -1,5 +1,4 @@
 require_relative '../../test_helper'
-require './lib/easy_auto/git'
 
 describe EasyAuto::Git do
 

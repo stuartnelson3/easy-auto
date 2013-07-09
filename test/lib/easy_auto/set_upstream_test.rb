@@ -1,5 +1,4 @@
 require_relative '../../test_helper'
-require './lib/easy_auto/set_upstream'
 
 describe EasyAuto::SetUpstream do
   subject { EasyAuto::SetUpstream.new }

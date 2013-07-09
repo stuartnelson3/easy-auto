@@ -1,5 +1,4 @@
 require_relative '../../test_helper'
-require './lib/easy_auto/git_wrapper'
 
 module EasyAuto
   GitMock = Class.new do

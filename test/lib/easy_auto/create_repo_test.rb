@@ -1,5 +1,4 @@
 require_relative '../../test_helper'
-require './lib/easy_auto/create_repo'
 
 class CreateRepoMock < EasyAuto::CreateRepo
   def get_github_email

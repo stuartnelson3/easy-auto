@@ -1,5 +1,4 @@
 require_relative '../../test_helper'
-require './lib/easy_auto/create_branch'
 
 describe EasyAuto::CreateBranch do
 

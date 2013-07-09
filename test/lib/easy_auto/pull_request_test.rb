@@ -1,5 +1,4 @@
 require_relative '../../test_helper'
-require './lib/easy_auto/pull_request'
 
 class PRMock < EasyAuto::PullRequest
   def remote

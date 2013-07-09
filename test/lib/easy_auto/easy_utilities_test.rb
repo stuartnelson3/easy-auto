@@ -1,5 +1,4 @@
 require_relative '../../test_helper'
-require './lib/easy_auto/easy_utilities'
 
 module EasyAuto
   UtilitiesMock = Class.new do
