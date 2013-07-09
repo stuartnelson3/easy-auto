@@ -2,7 +2,7 @@ require 'easy_auto/system_helper'
 
 module EasyAuto
   class Git
-    include SystemHelper
+    extend SystemHelper
 
     def self.current_branch_name
       cli_send "git rev-parse --abbrev-ref HEAD"
