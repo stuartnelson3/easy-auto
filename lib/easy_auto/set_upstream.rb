@@ -1,17 +1,17 @@
 require 'easy_auto/system_helper'
-require 'easy_auto/git'
+require 'easy_auto/git_wrapper'
 
 module EasyAuto
   class SetUpstream
     include SystemHelper
-    include Git
+    include GitWrapper
 
     def set
-      system "git branch -u origin/#{branch_name}"
+      system "git branch -u origin/master #{branch_name}"
     end
 
     def branch_name
-      current_branch_name
+      git.current_branch_name
     end
   end
 end

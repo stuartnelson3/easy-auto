@@ -1,10 +1,10 @@
 require 'easy_auto/easy_utilities'
-require 'easy_auto/git'
+require 'easy_auto/git_wrapper'
 
 module EasyAuto
   class PullRequest
     include EasyUtilities
-    include Git
+    include GitWrapper
     attr_accessor :title, :body
 
     def run
@@ -26,7 +26,7 @@ module EasyAuto
     end
 
     def head
-      current_branch_name
+      git.current_branch_name
     end
 
     def repo_name
