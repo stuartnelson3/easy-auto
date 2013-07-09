@@ -17,12 +17,12 @@ module EasyAuto
       email.split("@").first
     end
 
-    def get_github_email
-      system "git config --get user.email"
-    end
-
     def email
       get_github_email
+    end
+
+    def get_github_email
+      cli_send "git config --get user.email"
     end
 
     def set_password
@@ -31,20 +31,20 @@ module EasyAuto
     end
 
     def remote_exists?
-      output = system "git branch -r"
+      output = cli_send "git branch -r"
       !output.empty?
     end
 
     def create_remote
-      system "git init"
+      cli_send "git init"
       create_repo
       set_remote
     end
 
     def set_remote
-      system "git commit -m 'first commit'"
-      system "git remote add origin git@github.com:#{username}/#{repo_name}.git"
-      system "git push -u origin master"
+      cli_send "git commit -m 'first commit'"
+      cli_send "git remote add origin git@github.com:#{username}/#{repo_name}.git"
+      cli_send "git push -u origin master"
     end
 
     def create_repo

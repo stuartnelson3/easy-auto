@@ -5,6 +5,7 @@ module EasyAuto
   class PullRequest
     include EasyUtilities
     include GitWrapper
+    include SystemHelper
     attr_accessor :title, :body
 
     def run
@@ -22,7 +23,7 @@ module EasyAuto
     end
 
     def base
-      system "git branch -r"
+      cli_send "git branch -r"
     end
 
     def head
@@ -34,7 +35,7 @@ module EasyAuto
     end
 
     def remote
-      system "git remote -v"
+      cli_send "git remote -v"
     end
   end
 end

@@ -7,7 +7,7 @@ module EasyAuto
     include GitWrapper
 
     def set
-      system "git branch -u origin/master #{branch_name}"
+      cli_send "git branch -u origin/master #{branch_name}"
     end
 
     def branch_name

@@ -15,6 +15,6 @@ describe EasyAuto::CreateRepo do
   end
 
   it 'correctly requires the system helper' do
-    subject.must_respond_to :system
+    subject.must_respond_to :cli_send
   end
 end
