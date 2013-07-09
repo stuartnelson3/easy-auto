@@ -1,6 +1,6 @@
-# Easy::Auto
+# EasyAuto
 
-TODO: Write a gem description
+Simple CLI for git and github
 
 ## Installation
 
@@ -18,7 +18,17 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+To create a repo on github from your current project:
+
+    $ create-repo
+    
+Follow the instructions to log in and name it. EasyAuto assumes your login is the same as the email addressed stored in your git config's email.
+
+To open a pull-request:
+
+    $ pull-request
+    
+Follow the prompts.
 
 ## Contributing
 
