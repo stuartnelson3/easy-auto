@@ -27,6 +27,9 @@ module EasyAuto
 
     def load_config
       YAML.load_file config_file
+    rescue Errno::ENOENT
+      create_config_file
+      {}
     end
 
     def create_config_file

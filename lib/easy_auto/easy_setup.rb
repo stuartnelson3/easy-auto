@@ -11,16 +11,19 @@ module EasyAuto
       os_check
       check_git_install
       check_git_extras_install
-      create_config_file
+      check_authorization
       success_message
+    end
+
+    def check_authorization
+      Octokit::Client.new(login: config_manager.github_email, oauth_token: config_manager.github_token).user
+    rescue
+      puts "run easy-authorize to set up your github!"
+      exit 1
     end
 
     def success_message
       puts "all set!"
-    end
-
-    def create_config_file
-      config_manager.create_config_file
     end
 
     def check_git_install
@@ -37,6 +40,7 @@ module EasyAuto
         puts "Sorry, your OS isn't supported."
         exit 1
       end
+      puts "you have an acceptable os!"
     end
 
     def setup_message
