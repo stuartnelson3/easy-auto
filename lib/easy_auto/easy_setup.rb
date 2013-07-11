@@ -1,8 +1,10 @@
 require 'easy_auto/config_manager_wrapper'
+require 'easy_auto/system_helper'
 
 module EasyAuto
   class EasySetup
     include ConfigManagerWrapper
+    include SystemHelper
     attr_accessor :email
     attr_accessor :password
 
@@ -36,15 +38,16 @@ module EasyAuto
 
     def os_check
       puts "lets check your operating system..."
-      if os != "Linux" || os != "Darwin"
+      if os == "Linux" || os == "Darwin"
+        puts "you have an acceptable os!"
+      else
         puts "Sorry, your OS isn't supported."
         exit 1
       end
-      puts "you have an acceptable os!"
     end
 
     def setup_message
-      puts "this will configure your computer for easy-auto."
+      puts "this will check to make sure your computer is set up!"
     end
   end
 end
