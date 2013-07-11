@@ -1,8 +1,14 @@
 require_relative '../../test_helper'
 
-class CreateRepoMock < EasyAuto::CreateRepo
-  def get_github_email
+Client = Class.new do
+  def email
     'test@example.com'
+  end
+end
+
+class CreateRepoMock < EasyAuto::CreateRepo
+  def client
+    Client.new
   end
 end
 
@@ -12,10 +18,6 @@ describe EasyAuto::CreateRepo do
 
   it 'sets the email' do
     subject.email.must_equal 'test@example.com'
-  end
-
-  it 'returns the right username' do
-    subject.username == 'test'
   end
 
   it 'correctly requires the system helper' do

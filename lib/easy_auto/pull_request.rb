@@ -11,7 +11,7 @@ module EasyAuto
     def run
       ask_title
       ask_body
-      Octokit::Client.create_pull_request(repo_name, base, head, title, body)
+      client.create_pull_request(repo_name, base, head, title, body)
     end
 
     def ask_title

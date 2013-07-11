@@ -1,33 +1,26 @@
 require 'easy_auto/system_helper'
 require 'easy_auto/easy_utilities'
+require 'easy_auto/client_wrapper'
 
 module EasyAuto
   class CreateRepo
     include SystemHelper
     include EasyUtilities
+    include ClientWrapper
     attr_accessor :repo_name
     attr_reader :password
 
     def run
       set_password
-      create_remote unless remote_exists?
-    end
-
-    def username
-      email.split("@").first
+      if remote_exists?
+        puts "remote already exists!", "aborting!"
+      else
+        create_remote
+      end
     end
 
     def email
-      get_github_email
-    end
-
-    def get_github_email
-      cli_send "git config --get user.email"
-    end
-
-    def set_password
-      puts "enter your password for #{email}"
-      @password = hidden_input
+      client.email
     end
 
     def remote_exists?
@@ -55,10 +48,6 @@ module EasyAuto
     def get_repo_name
       puts 'what would you like to name the remote repo?'
       self.repo_name = gets.strip
-    end
-
-    def client
-      Octokit::Client.new login: username, password: password
     end
   end
 end
