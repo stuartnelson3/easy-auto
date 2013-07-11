@@ -1,9 +1,11 @@
 require 'json'
 require 'easy_auto/system_helper'
 require 'easy_auto/config_manager_wrapper'
+require 'easy_auto/easy_utilities'
 
 module EasyAuto
   class Authorize
+    include EasyUtilities
     include SystemHelper
     include ConfigManagerWrapper
     attr_accessor :email
@@ -41,7 +43,7 @@ module EasyAuto
     end
 
     def github_curl
-      cli_send %Q(curl -u '#{username}:#{password}' -d '{"scopes": ["repo"], "notes": "Easy Auto"}' https://api.github.com/authorizations)
+      cli_send %Q(curl -u '#{email}:#{password}' -d '{"scopes": ["repo"], "notes": "Easy Auto"}' https://api.github.com/authorizations)
     end
   end
 end

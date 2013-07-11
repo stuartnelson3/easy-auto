@@ -22,38 +22,38 @@ module EasyAuto
     def set key, value
       send("#{key}=", value)
       config.merge!(key => value)
-      File.write config_file, YAML.dump(config)
+      File.write self.class.config_file, YAML.dump(config)
     end
 
-    def load_config
+    def self.load_config
       YAML.load_file config_file
     rescue Errno::ENOENT
       create_config_file
       {}
     end
 
-    def create_config_file
+    def self.create_config_file
       check_dir_existence
       check_file_existence
     end
 
-    def check_dir_existence
+    def self.check_dir_existence
       unless Dir.exists? config_dir
         Dir.mkdir config_dir
       end
     end
 
-    def config_dir
+    def self.config_dir
       File.expand_path "~/.easy-auto"
     end
 
-    def check_file_existence
+    def self.check_file_existence
       unless File.exists? config_file
-        File.write config_file, attributes
+        File.write config_file, YAML.dump({})
       end
     end
 
-    def config_file
+    def self.config_file
       File.join config_dir, "config.yml"
     end
   end
