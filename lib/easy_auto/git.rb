@@ -8,6 +8,14 @@ module EasyAuto
       cli_send "git rev-parse --abbrev-ref HEAD"
     end
 
+    def self.remote_branch
+      cli_send "git branch -r"
+    end
+
+    def self.remote
+      cli_send "git remote"
+    end
+
     def self.checkout_master
       cli_send "git checkout master"
     end

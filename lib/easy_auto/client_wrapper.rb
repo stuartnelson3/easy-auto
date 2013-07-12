@@ -1,15 +1,17 @@
+require 'easy_auto/config_manager_wrapper'
+
 module EasyAuto
+  class Github
+    extend ConfigManagerWrapper
+
+    def self.client
+      Octokit::Client.new login: config_manager.github_email, oauth_token: config_manager.github_token
+    end
+  end
+
   module ClientWrapper
     def client
-      Octokit::Client.new login: email, password: password
-    end
-
-    def email
-      # ENV['email']
-    end
-
-    def password
-      # ENV['password']
+      Github.client
     end
   end
 end

@@ -1,11 +1,13 @@
 require 'easy_auto/easy_utilities'
 require 'easy_auto/git_wrapper'
+require 'easy_auto/client_wrapper'
 
 module EasyAuto
   class PullRequest
     include EasyUtilities
     include GitWrapper
     include SystemHelper
+    include ClientWrapper
     attr_accessor :title, :body
 
     def run
@@ -23,7 +25,7 @@ module EasyAuto
     end
 
     def base
-      cli_send "git branch -r"
+      git.remote_branch
     end
 
     def head
