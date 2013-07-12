@@ -1,13 +1,11 @@
-require 'easy_auto/system_helper'
 require 'easy_auto/git_wrapper'
 
 module EasyAuto
   class SetUpstream
-    include SystemHelper
     include GitWrapper
 
     def set
-      cli_send "git push -u #{remote} #{branch_name}"
+      git.perform "git push -u #{remote} #{branch_name}"
     end
 
     def remote
