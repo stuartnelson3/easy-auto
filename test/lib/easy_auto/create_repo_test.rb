@@ -28,10 +28,6 @@ describe EasyAuto::CreateRepo do
     subject.must_respond_to :cli_send
   end
 
-  it 'sends :cli_send' do
-    subject.remote_exists?.must_send :cli_send
-  end
-
   # it 'sends the right cli_send messages in #set_remote' do
   # end
 end

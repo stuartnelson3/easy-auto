@@ -12,6 +12,11 @@ module EasyAuto
       cli_send "git branch -r"
     end
 
+    def self.delete_branch branch_name
+      checkout_master
+      cli_send "git branch -D #{branch_name}"
+    end
+
     def self.remote
       cli_send "git remote"
     end

@@ -8,11 +8,19 @@ module EasyAuto
     include EasyUtilities
 
     def run
-      git.checkout_master
-      git.pull
+      checkout_master
+      pull
       new_branch = ask_new_branch_name
       git.create_and_switch_to new_branch
       new_branch_message if set_upstream
+    end
+
+    def checkout_master
+      git.checkout_master
+    end
+
+    def pull
+      git.pull
     end
 
     def set_upstream
