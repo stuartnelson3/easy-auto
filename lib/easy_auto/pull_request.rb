@@ -6,7 +6,6 @@ module EasyAuto
   class PullRequest
     include EasyUtilities
     include GitWrapper
-    include SystemHelper
     include ClientWrapper
     attr_accessor :title, :body
 
@@ -33,11 +32,11 @@ module EasyAuto
     end
 
     def repo_name
-      remote.match(/\/(.+\.git)/)[1]
+      remote_paths.match(/\/(.+\.git)/)[1]
     end
 
-    def remote
-      cli_send "git remote -v"
+    def remote_paths
+      git.perform "git remote -v"
     end
   end
 end

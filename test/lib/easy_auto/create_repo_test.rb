@@ -24,10 +24,6 @@ describe EasyAuto::CreateRepo do
     subject.username.must_equal 'test'
   end
 
-  it 'correctly requires the system helper' do
-    subject.must_respond_to :cli_send
-  end
-
   # it 'sends the right cli_send messages in #set_remote' do
   # end
 end
