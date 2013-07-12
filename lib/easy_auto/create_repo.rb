@@ -1,11 +1,9 @@
-require 'easy_auto/system_helper'
 require 'easy_auto/easy_utilities'
 require 'easy_auto/client_wrapper'
 require 'easy_auto/git_wrapper'
 
 module EasyAuto
   class CreateRepo
-    include SystemHelper
     include EasyUtilities
     include ClientWrapper
     include GitWrapper
