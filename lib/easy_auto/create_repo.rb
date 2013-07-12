@@ -33,16 +33,36 @@ module EasyAuto
     end
 
     def create_remote
-      cli_send "git init"
+      git_init
       create_repo
       set_remote
     end
 
+    def git_init
+      git.init
+    end
+
+    def add_files
+      git.perform "git add -A"
+    end
+
+    def first_commit
+      git.perform "git commit -m 'first commit'"
+    end
+
+    def add_remote
+      git.perform "git remote add origin git@github.com:#{username}/#{repo_name}.git"
+    end
+
+    def first_push
+      git.perform "git push -u origin master"
+    end
+
     def set_remote
-      cli_send "git add -A"
-      cli_send "git commit -m 'first commit'"
-      cli_send "git remote add origin git@github.com:#{username}/#{repo_name}.git"
-      cli_send "git push -u origin master"
+      add_files
+      first_commit
+      add_remote
+      first_push
     end
 
     def create_repo
@@ -51,8 +71,11 @@ module EasyAuto
     end
 
     def get_repo_name
-      puts 'what would you like to name the remote repo?'
-      self.repo_name = gets.strip
+      self.repo_name = ask_repo_name
+    end
+
+    def ask_repo_name
+      ask 'what would you like to name the remote repo?'
     end
   end
 end
