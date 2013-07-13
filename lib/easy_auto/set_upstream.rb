@@ -5,7 +5,7 @@ module EasyAuto
     include GitWrapper
 
     def set
-      git.perform "git push -u #{remote} #{branch_name}"
+      git.perform "push -u #{remote} #{branch_name}"
     end
 
     def remote

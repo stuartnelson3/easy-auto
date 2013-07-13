@@ -3,6 +3,12 @@ require_relative '../../test_helper'
 describe EasyAuto::SetUpstream do
   subject { EasyAuto::SetUpstream.new }
 
+  let(:git) { subject.git }
+
+  after do
+    # git.perform "git push origin :test-123"
+  end
+
   it 'requires the git wrapper' do
     subject.must_respond_to :git
   end

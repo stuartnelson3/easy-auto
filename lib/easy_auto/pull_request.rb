@@ -36,7 +36,7 @@ module EasyAuto
     end
 
     def remote_paths
-      git.perform "git remote -v"
+      git.perform "remote -v"
     end
   end
 end

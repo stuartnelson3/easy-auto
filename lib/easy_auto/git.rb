@@ -5,40 +5,40 @@ module EasyAuto
     extend SystemHelper
 
     def self.perform command
-      cli_send "#{command}"
+      cli_send "git #{command}"
     end
 
     def self.init
-      perform "git init"
+      perform "init"
     end
 
     def self.current_branch_name
-      perform "git rev-parse --abbrev-ref HEAD"
+      perform "rev-parse --abbrev-ref HEAD"
     end
 
     def self.remote_branch
-      perform "git branch -r"
+      perform "branch -r"
     end
 
     def self.delete_branch branch_name
       checkout_master
-      perform "git branch -D #{branch_name}"
+      perform "branch -D #{branch_name}"
     end
 
     def self.remote
-      perform "git remote"
+      perform "remote"
     end
 
     def self.checkout_master
-      perform "git checkout master"
+      perform "checkout master"
     end
 
     def self.pull
-      perform "git pull"
+      perform "pull"
     end
 
     def self.create_and_switch_to branch_name
-      perform "git checkout -b #{branch_name}"
+      perform "checkout -b #{branch_name}"
     end
   end
 end

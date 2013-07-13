@@ -41,19 +41,19 @@ module EasyAuto
     end
 
     def add_files
-      git.perform "git add -A"
+      git.perform "add -A"
     end
 
     def first_commit
-      git.perform "git commit -m 'first commit'"
+      git.perform "commit -m 'first commit'"
     end
 
     def add_remote
-      git.perform "git remote add origin git@github.com:#{username}/#{repo_name}.git"
+      git.perform "remote add origin git@github.com:#{username}/#{repo_name}.git"
     end
 
     def first_push
-      git.perform "git push -u origin master"
+      git.perform "push -u origin master"
     end
 
     def set_remote
