@@ -20,8 +20,7 @@ describe EasyAuto::CreateBranch do
   let(:git) { subject.git }
 
   after do
-    git.checkout_master
-    git.delete_branch 'test-123'
+    git.delete_local_branch 'test-123'
   end
 
   it 'should create the test branch' do

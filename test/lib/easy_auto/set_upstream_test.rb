@@ -1,12 +1,16 @@
 require_relative '../../test_helper'
 
 describe EasyAuto::SetUpstream do
-  subject { EasyAuto::SetUpstream.new }
 
+  subject { EasyAuto::SetUpstream.new }
   let(:git) { subject.git }
 
+  before do
+    git.perform 'checkout -b test-123'
+  end
+
   after do
-    # git.perform "git push origin :test-123"
+    git.delete_local_and_remote_branch 'test-123'
   end
 
   it 'requires the git wrapper' do
@@ -14,6 +18,13 @@ describe EasyAuto::SetUpstream do
   end
 
   it 'returns the git class' do
-    subject.git.must_be_same_as EasyAuto::Git
+    git.must_be_same_as EasyAuto::Git
+  end
+
+  it 'sets an upstream remote' do
+    git.remote_branch.wont_include 'test-123'
+    subject.set
+    git.current_branch_name.must_equal 'test-123'
+    git.remote_branch.must_include 'test-123'
   end
 end

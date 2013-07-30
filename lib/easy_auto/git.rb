@@ -20,9 +20,18 @@ module EasyAuto
       perform "branch -r"
     end
 
-    def self.delete_branch branch_name
+    def self.delete_local_branch branch_name
       checkout_master
       perform "branch -D #{branch_name}"
+    end
+
+    def self.delete_local_and_remote_branch branch_name
+      delete_local_branch branch_name
+      delete_remote_branch branch_name
+    end
+
+    def self.delete_remote_branch branch_name
+      perform "push origin :#{branch_name}"
     end
 
     def self.remote
