@@ -17,11 +17,15 @@ module EasyAuto
       success_message
     end
 
+    def system_exit
+      exit 1
+    end
+
     def check_authorization
       Octokit::Client.new(login: config_manager.github_email, oauth_token: config_manager.github_token).user
     rescue
       puts "run easy-authorize to set up your github!"
-      exit 1
+      system_exit
     end
 
     def success_message
@@ -37,12 +41,11 @@ module EasyAuto
     end
 
     def os_check
-      puts "lets check your operating system..."
       if os == "Linux" || os == "Darwin"
-        puts "you have an acceptable os!"
+        puts "You have an acceptable os!"
       else
         puts "Sorry, your OS isn't supported."
-        exit 1
+        system_exit
       end
     end
 
