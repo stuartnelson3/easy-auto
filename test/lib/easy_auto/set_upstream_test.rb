@@ -2,7 +2,7 @@ require_relative '../../test_helper'
 
 describe EasyAuto::SetUpstream do
 
-  subject { EasyAuto::SetUpstream.new }
+  subject { EasyAuto::SetUpstream.new('test-123', 'master') }
   let(:git) { subject.git }
 
   before do
@@ -26,5 +26,15 @@ describe EasyAuto::SetUpstream do
     subject.set
     git.current_branch_name.must_equal 'test-123'
     git.remote_branch.must_include 'test-123'
+  end
+end
+
+SUMock = Class.new(EasyAuto::SetUpstream) do
+  def initialize mock, brancstuff
+
+  end
+
+  def set
+    @mock.perform 'put in shit here'
   end
 end
