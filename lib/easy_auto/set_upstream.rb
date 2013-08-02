@@ -12,7 +12,7 @@ module EasyAuto
     end
 
     def set
-      git.perform "push -u #{new_branch} origin/#{origin_branch}"
+      git.perform "push -u #{new_branch} origin/#{upstream_branch}"
     end
   end
 end
