@@ -29,21 +29,4 @@ describe EasyAuto::EasySetup do
       -> { subject.os_check }.must_output "You have an acceptable os!\n"
     end
   end
-
-  # it "should curl github to get your token" do
-  # end
-  # describe "creating the ~/.easy-auto folder" do
-  #   it "should check to see if the folder exists already" do
-  #   end
-  #   it "should create the folder if it doesn't exist" do
-  #   end
-  # end
-  # describe "creating the config.yml file" do
-  #   it "should check to see if the file exists" do
-  #   end
-  #   it "should create the file if it doesn't exist" do
-  #   end
-  #   it "should write a .yml with your auth info to ~/.easy-auto/config.yml" do
-  #   end
-  # end
 end
