@@ -26,10 +26,6 @@ module EasyAuto
       !git.remote_branch.empty?
     end
 
-    def username
-      login.split("@").first
-    end
-
     def create_remote
       git_init
       create_repo

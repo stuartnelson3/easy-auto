@@ -12,7 +12,7 @@ module EasyAuto
     def run
       ask_title
       ask_body
-      client.create_pull_request(repo_name, base, head, title, body)
+      client.create_pull_request(user_repo_path, base, head, title, body)
     end
 
     def ask_title
@@ -32,7 +32,11 @@ module EasyAuto
     end
 
     def repo_name
-      remote_paths.match(/\/(.+\.git)/)[1]
+      remote_paths.match(/\/(.+)\.git/)[1]
+    end
+
+    def user_repo_path
+      "#{username}/#{repo_name}"
     end
 
     def remote_paths

@@ -13,5 +13,9 @@ module EasyAuto
     def client
       Github.client
     end
+
+    def username
+      client.login.split('@').first
+    end
   end
 end
