@@ -12,12 +12,16 @@ module EasyAuto
       perform "init"
     end
 
+    def self.abbrev_ref
+      "rev-parse --abbrev-ref"
+    end
+
     def self.current_branch_name
-      perform "rev-parse --abbrev-ref HEAD"
+      perform "#{abbrev_ref} HEAD"
     end
 
     def self.remote_branch
-      perform "branch -r"
+      perform "#{abbrev_ref} --symbolic-full-name @{u}"
     end
 
     def self.delete_local_branch branch_name
@@ -46,8 +50,8 @@ module EasyAuto
       perform "pull"
     end
 
-    def self.create_and_switch_to branch_name
-      perform "checkout -b #{branch_name}"
+    def self.create_and_switch_to branch_name, tracking_branch = nil
+      perform "checkout -b #{branch_name} #{tracking_branch}"
     end
   end
 end

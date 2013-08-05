@@ -23,7 +23,7 @@ module EasyAuto
     end
 
     def remote_exists?
-      !git.remote_branch.empty?
+      !git.remote.empty?
     end
 
     def create_remote

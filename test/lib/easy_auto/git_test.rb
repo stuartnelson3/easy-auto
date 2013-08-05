@@ -38,9 +38,15 @@ describe EasyAuto::Git do
   end
 
   describe '#create_and_switch_to' do
-    it 'uses the right git commands' do
-      @mock.expect :send, true, ["git checkout -b test-123"]
+    it 'with one argument' do
+      @mock.expect :send, true, ["git checkout -b test-123 "]
       subject.create_and_switch_to 'test-123'
+      @mock.verify
+    end
+
+    it 'with two arguments' do
+      @mock.expect :send, true, ["git checkout -b test-123 other-branch"]
+      subject.create_and_switch_to 'test-123', 'other-branch'
       @mock.verify
     end
   end
@@ -55,7 +61,7 @@ describe EasyAuto::Git do
 
   describe '#remote_branch' do
     it 'uses the right git commands' do
-      @mock.expect :send, true, ["git branch -r"]
+      @mock.expect :send, true, ["git rev-parse --abbrev-ref --symbolic-full-name @{u}"]
       subject.remote_branch
       @mock.verify
     end

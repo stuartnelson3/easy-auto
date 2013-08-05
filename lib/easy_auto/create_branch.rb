@@ -8,20 +8,22 @@ module EasyAuto
     include EasyUtilities
     attr_reader :new_branch
     attr_reader :origin_branch
-    attr_reader :wrong_usage
 
-    def initialize *args
-      @wrong_usage = args.count < 1 || args.count > 2
-      @new_branch = args.pop
-      @origin_branch = args.pop || 'master'
+    def initialize new_branch = nil, origin_branch = nil
+      @new_branch = new_branch
+      @origin_branch = origin_branch
     end
 
     def run
       return usage if wrong_usage || help_request?
       checkout_master
       pull
-      git.create_and_switch_to new_branch
+      git.create_and_switch_to new_branch, origin_branch
       new_branch_message if set_upstream
+    end
+
+    def wrong_usage
+      [new_branch, origin_branch].all?(&:nil?)
     end
 
     def help_request?
@@ -41,7 +43,7 @@ module EasyAuto
     end
 
     def set_upstream
-      SetUpstream.new(new_branch, origin_branch).set
+      SetUpstream.new(new_branch).set
     end
 
     def new_branch_message
