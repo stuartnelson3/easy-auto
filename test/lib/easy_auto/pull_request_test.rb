@@ -8,7 +8,7 @@ end
 
 class PRMock < EasyAuto::PullRequest
   def remote_paths
-    "origin\tgit@github.com:stuartnelson3/easy-auto.git (fetch)\norigin\tgit@github.com:stuartnelson3/easy-auto.git (push)"
+    "origin\tgit@github.com:repo_owner/easy-auto.git (fetch)\norigin\tgit@github.com:repo_owner/easy-auto.git (push)"
   end
 end
 
@@ -18,6 +18,10 @@ describe EasyAuto::PullRequest do
 
   it 'requires the git wrapper' do
     subject.must_respond_to :git
+  end
+
+  it 'requires the client wrapper' do
+    subject.must_respond_to :client
   end
 
   it 'returns the git class' do
@@ -36,7 +40,11 @@ describe EasyAuto::PullRequest do
     subject.repo_name.must_equal 'easy-auto'
   end
 
-  it 'returns the right user_repo_path' do
-    subject.user_repo_path.must_equal 'sample-user/easy-auto'
+  it 'finds the repo name from #remote_paths' do
+    subject.repo_owner.must_equal 'repo_owner'
+  end
+
+  it 'returns the right repo_path' do
+    subject.repo_path.must_equal 'repo_owner/easy-auto'
   end
 end
