@@ -24,7 +24,7 @@ module EasyAuto
     end
 
     def base
-      git.remote_branch
+      'master'
     end
 
     def head
