@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["stuartnelson3@gmail.com"]
   spec.description   = %q{Easy access to git commands}
   spec.summary       = %q{Use the command line to simplify interacting with git}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/stuartnelson3/easy-auto"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
