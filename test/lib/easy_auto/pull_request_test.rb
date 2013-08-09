@@ -10,11 +10,22 @@ class PRMock < EasyAuto::PullRequest
   def remote_paths
     "origin\tgit@github.com:repo_owner/easy-auto.git (fetch)\norigin\tgit@github.com:repo_owner/easy-auto.git (push)"
   end
+
+  def head
+    'awesome-new-feature'
+  end
 end
 
 describe EasyAuto::PullRequest do
 
   subject { PRMock.new }
+
+  it 'states what branch is requesting to be merged into what branch' do
+    repo_owner = 'repo_owner'
+    repo_name = 'easy-auto'
+    pr_branch = 'awesome-new-feature'
+    -> { subject.state_merge_intent }.must_output "Preparing pull request:\n#{repo_owner}/#{repo_name}/#{pr_branch} -> #{repo_owner}/#{repo_name}/master\n"
+  end
 
   it 'requires the git wrapper' do
     subject.must_respond_to :git

@@ -10,17 +10,23 @@ module EasyAuto
     attr_accessor :title, :body
 
     def run
+      state_merge_intent
       ask_title
       ask_body
       client.create_pull_request(repo_path, base, head, title, body)
     end
 
+    def state_merge_intent
+      puts "Preparing pull request:"
+      puts "#{repo_owner}/#{repo_name}/#{head} -> #{repo_owner}/#{repo_name}/master"
+    end
+
     def ask_title
-      self.title = ask "what would you like the title to be?"
+      self.title = ask "Title:"
     end
 
     def ask_body
-      self.body = ask "what would you like the body to be?"
+      self.body = ask "Description:"
     end
 
     def base
