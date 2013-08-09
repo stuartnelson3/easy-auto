@@ -15,6 +15,16 @@ And then execute:
 Or install it yourself as:
 
     $ gem install easy-auto
+    
+## Setup
+
+Configure your computer for easy-auto:
+
+    $ easy-authorize
+
+Follow the prompts, then confirm the install worked:
+
+    $ easy-setup
 
 ## Usage
 
@@ -22,7 +32,13 @@ To create a repo on github from your current project:
 
     $ create-repo
     
-Follow the instructions to log in and name it. EasyAuto assumes your login is the same as the email addressed stored in your git config's email.
+Follow the instructions.
+
+Create a new branch:
+
+    $ create-branch <new-branch-name> <OPTIONAL: branch-to-track>
+    
+The new branch is made from master if no second branch name is given.
 
 To open a pull-request:
 
