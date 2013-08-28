@@ -72,28 +72,3 @@ describe EasyAuto::CreateBranch do
     end
   end
 end
-
-# CBSetUpstream = Class.new(CBMock) do
-#   def initialize mock
-#     @mock = mock
-#     @upstream_branch = 'test-123'
-#   end
-
-#   def set_upstream
-#     @mock.set @upstream_branch
-#   end
-# end
-
-# describe CBSetUpstream do
-#   before do
-#     @mock = MiniTest::Mock.new
-#   end
-#   subject { CBSetUpstream.new @mock }
-
-#   it 'should work' do
-#     upstream_branch = 'test-123'
-#     @mock.expect :set, true, [upstream_branch]
-#     subject.run
-#     @mock.verify
-#   end
-# end
