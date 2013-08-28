@@ -22,9 +22,11 @@ module EasyAuto
     end
 
     def check_authorization
-      Octokit::Client.new(login: config_manager.github_email, oauth_token: config_manager.github_token).user
+      Octokit::Client.new(login: config_manager.github_email, access_token: config_manager.github_token).user
+    rescue Faraday::Error::ConnectionFailed => e
+      p e
     rescue
-      puts "run easy-authorize to set up your github!"
+      puts "make sure you have octokit installed and have run easy-authorize!"
       system_exit
     end
 
