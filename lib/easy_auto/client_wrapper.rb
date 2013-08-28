@@ -5,7 +5,7 @@ module EasyAuto
     extend ConfigManagerWrapper
 
     def self.client
-      Octokit::Client.new login: config_manager.github_email, oauth_token: config_manager.github_token
+      Octokit::Client.new login: config_manager.github_email, access_token: config_manager.github_token
     end
   end
 
