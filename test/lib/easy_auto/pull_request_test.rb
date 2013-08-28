@@ -7,6 +7,10 @@ module EasyAuto::ClientWrapper
 end
 
 class PRMock < EasyAuto::PullRequest
+  def initialize mock
+    @mock = mock
+  end
+
   def remote_paths
     "origin\tgit@github.com:repo_owner/easy-auto.git (fetch)\norigin\tgit@github.com:repo_owner/easy-auto.git (push)"
   end
@@ -14,11 +18,18 @@ class PRMock < EasyAuto::PullRequest
   def head
     'awesome-new-feature'
   end
+
+  def cli_send browser_open_command
+    @mock.call browser_open_command
+  end
 end
 
 describe EasyAuto::PullRequest do
+  before do
+    @mock = MiniTest::Mock.new
+  end
 
-  subject { PRMock.new }
+  subject { PRMock.new @mock }
 
   it 'states what branch is requesting to be merged into what branch' do
     repo_owner = 'repo_owner'
@@ -57,5 +68,11 @@ describe EasyAuto::PullRequest do
 
   it 'returns the right repo_path' do
     subject.repo_path.must_equal 'repo_owner/easy-auto'
+  end
+
+  it 'opens the right web address' do
+    pr_number = 10
+    @mock.expect :call, true, ["open 'https://github.com/#{subject.repo_path}/pull/#{pr_number}'"]
+    subject.open_in_browser pr_number
   end
 end

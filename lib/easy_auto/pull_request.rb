@@ -7,13 +7,20 @@ module EasyAuto
     include EasyUtilities
     include GitWrapper
     include ClientWrapper
+    include SystemHelper
     attr_accessor :title, :body
 
     def run
       state_merge_intent
       ask_title
       ask_body
-      client.create_pull_request(repo_path, base, head, title, body)
+      resp = client.create_pull_request(repo_path, base, head, title, body)
+      pr_number = resp.attrs[:number]
+      open_in_browser pr_number
+    end
+
+    def open_in_browser pr_number
+      cli_send "open 'https://github.com/#{repo_path}/pull/#{pr_number}'"
     end
 
     def state_merge_intent
