@@ -14,6 +14,7 @@ module EasyAuto
       state_merge_intent
       ask_title
       ask_body
+      push_changes
       resp = client.create_pull_request(repo_path, base, head, title, body)
       pr_number = resp.attrs[:number]
       open_in_browser pr_number
@@ -54,6 +55,10 @@ module EasyAuto
 
     def repo_path
       "#{repo_owner}/#{repo_name}"
+    end
+
+    def push_changes
+      git.perform "push"
     end
 
     def remote_paths
