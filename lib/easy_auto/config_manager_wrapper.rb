@@ -1,9 +1,9 @@
-require 'easy_auto/config_manager'
+require 'general_store'
 
 module EasyAuto
   module ConfigManagerWrapper
     def config_manager
-      @config_manager ||= ConfigManager.read_yml
+      @config_manager ||= GeneralStore.read '~/.easy-auto'
     end
   end
 end

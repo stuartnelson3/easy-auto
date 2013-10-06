@@ -22,4 +22,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake"
 
   spec.add_dependency "octokit", "~> 2.0"
+  spec.add_dependency "general_store"
 end

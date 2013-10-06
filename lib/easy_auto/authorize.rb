@@ -1,6 +1,6 @@
 require 'json'
+require 'general_store'
 require 'easy_auto/system_helper'
-require 'easy_auto/config_manager_wrapper'
 require 'easy_auto/easy_utilities'
 
 module EasyAuto
@@ -19,8 +19,10 @@ module EasyAuto
     end
 
     def store_token
-      config_manager.set :github_email, email
-      config_manager.set :github_token, token
+      GeneralStore.create '~/.easy-auto' do |gs|
+        gs.github_email = email
+        gs.github_token = token
+      end
     end
 
     def get_credentials
