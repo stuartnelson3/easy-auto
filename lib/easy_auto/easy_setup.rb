@@ -25,6 +25,7 @@ module EasyAuto
       Octokit::Client.new(login: config_manager.github_email, access_token: config_manager.github_token).user
     rescue Faraday::Error::ConnectionFailed => e
       p e
+      p "It appears you had an SSL error. Read http://mislav.uniqpath.com/2013/07/ruby-openssl/ to fix it."
     rescue
       puts "make sure you have octokit installed and have run easy-authorize!"
       system_exit
