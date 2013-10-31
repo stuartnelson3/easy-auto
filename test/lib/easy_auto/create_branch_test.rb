@@ -42,18 +42,10 @@ describe EasyAuto::CreateBranch do
   end
 
   describe 'command line invocation' do
-    # add webmock to stop network io
-    # do stuff with ARGV in create-branch bin script
-    # get up the nerve to dm bernhardt on twitter to pair with you
 
     it 'should return usage when invoked without arguments' do
       -> { CBMock.new(nil, nil).run }.must_output "usage: create-branch <new-branch> <OPTIONAL: branch-to-track>.\n"
     end
-
-    # it 'should return usage when invoked with too many arguments' do
-    #   subject = CBMock.new 'arg', 'too', 'many'
-    #   -> { subject.run }.must_output "usage: create-branch <new-branch> <OPTIONAL: branch-to-track>.\n"
-    # end
 
     it 'should return usage when invoked with -h' do
       subject = CBMock.new '-h'
