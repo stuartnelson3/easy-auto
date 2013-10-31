@@ -2,7 +2,7 @@
 
 require 'easy_auto'
 
-new_branch = ARGV.pop
-origin_branch = ARGV.pop
+new_branch = ARGV.shift
+origin_branch = ARGV.shift
 
 EasyAuto::CreateBranch.new(new_branch, origin_branch).run
