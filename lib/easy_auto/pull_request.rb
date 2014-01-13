@@ -67,11 +67,15 @@ module EasyAuto
 
     private
     def any_owner
-      remote_paths.match(/:(.+)\//)
+      remote_paths.match(/#{owner_regex}/)
     end
 
     def origin_owner
-      remote_paths.match(/origin.+:(.+)\//)
+      remote_paths.match(/origin.+#{owner_regex}/)
+    end
+
+    def owner_regex
+      ":(.+)\/"
     end
   end
 end
