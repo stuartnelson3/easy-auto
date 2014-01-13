@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/stuartnelson3/easy-auto.png?branch=master)](https://travis-ci.org/stuartnelson3/easy-auto)
+
 # EasyAuto
 
 Simple CLI for git and github
@@ -15,7 +17,7 @@ And then execute:
 Or install it yourself as:
 
     $ gem install easy-auto
-    
+
 ## Setup
 
 Configure your computer for easy-auto:
@@ -31,19 +33,19 @@ Follow the prompts, then confirm the install worked:
 To create a repo on github from your current project:
 
     $ create-repo
-    
+
 Follow the instructions.
 
 Create a new branch:
 
     $ create-branch <new-branch-name> <OPTIONAL: branch-to-track>
-    
+
 The new branch is made from master if no second branch name is given.
 
 To open a pull-request:
 
     $ pull-request
-    
+
 Follow the prompts.
 
 ## Contributing
