@@ -50,7 +50,7 @@ module EasyAuto
     end
 
     def repo_owner
-      remote_paths.match(/:(.+)\//)[1]
+      (origin_owner || any_owner)[1]
     end
 
     def repo_path
@@ -63,6 +63,15 @@ module EasyAuto
 
     def remote_paths
       git.perform "remote -v"
+    end
+
+    private
+    def any_owner
+      remote_paths.match(/:(.+)\//)
+    end
+
+    def origin_owner
+      remote_paths.match(/origin.+:(.+)\//)
     end
   end
 end

@@ -12,7 +12,7 @@ class PRMock < EasyAuto::PullRequest
   end
 
   def remote_paths
-    "origin\tgit@github.com:repo_owner/easy-auto.git (fetch)\norigin\tgit@github.com:repo_owner/easy-auto.git (push)"
+    "my_copy\tgit@github.com:stuartnelson3/easy-auto.git (fetch)\nmy_copy\tgit@github.com:stuartnelson3/easy-auto.git (push)\norigin\tgit@github.com:repo_owner/easy-auto.git (fetch)\norigin\tgit@github.com:repo_owner/easy-auto.git (push)\n"
   end
 
   def head
@@ -21,6 +21,12 @@ class PRMock < EasyAuto::PullRequest
 
   def cli_send browser_open_command
     @mock.call browser_open_command
+  end
+end
+
+DblMock = Class.new(PRMock) do
+  def remote_paths
+    "my_copy\tgit@github.com:stuartnelson3/easy-auto.git (fetch)\nmy_copy\tgit@github.com:stuartnelson3/easy-auto.git (push)"
   end
 end
 
@@ -64,6 +70,15 @@ describe EasyAuto::PullRequest do
 
   it 'finds the repo name from #remote_paths' do
     subject.repo_owner.must_equal 'repo_owner'
+  end
+
+  it 'finds the repo name attached to the origin endpoint if it exists' do
+    subject.repo_owner.must_equal 'repo_owner'
+  end
+
+  it "finds the repo name if origin is not present" do
+    dblmock = DblMock.new @mock
+    dblmock.repo_owner.must_equal 'stuartnelson3'
   end
 
   it 'returns the right repo_path' do
