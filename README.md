@@ -1,6 +1,5 @@
-[![Build Status](https://travis-ci.org/stuartnelson3/easy-auto.png?branch=master)](https://travis-ci.org/stuartnelson3/easy-auto)
-
 # EasyAuto
+[![Build Status](https://travis-ci.org/stuartnelson3/easy-auto.png?branch=master)](https://travis-ci.org/stuartnelson3/easy-auto)
 
 Simple CLI for git and github
 
